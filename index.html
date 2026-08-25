@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theerthan B G | 3D Interactive Portfolio &amp; Tech Innovations</title>
+  <meta name="description" content="Official 3D Animated Portfolio of Theerthan B G - BCA Scholar, Tech Innovator, AI &amp; UI/UX Specialist from Hassan, Karnataka." />
+  <meta name="theme-color" content="#030712" />
+
+  <!-- OpenGraph / Social Meta -->
+  <meta property="og:title" content="Theerthan B G | 3D Interactive Portfolio" />
+  <meta property="og:description" content="Explore projects, hackathon achievements, AI certifications, and web innovations by Theerthan B G." />
+  <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEir5AoyX_TJUU3AGROnV3hivMa0npuLP4hSGuP3EVvafIKY6goY5QY9p1W_cQLE8pi7Uw2Rn_3nD9E-W6KiyiK1jhDKCYUvw68flUXEEDpRDzSggQdUPUsbks1jTAmsD0StL24nZYsMNlntkiXxIuPqIjxBKQGt1g6mL-FRrRW-d4LV1Og4TRoCZGmznXY/s600/IMG-20260805-WA0022.jpg" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              cyan: '#06b6d4',
+              purple: '#8b5cf6',
+              emerald: '#10b981',
+              pink: '#ec4899',
+              dark: '#030712',
+              card: 'rgba(15, 23, 42, 0.65)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Three.js (r128) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Vanilla Tilt -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-[#030712] text-slate-100 selection:bg-cyan-500/30 selection:text-cyan-200">
+
+  <!-- Ambient Glow & Cyber Grid Background -->
+  <div class="fixed inset-0 cyber-grid-bg pointer-events-none z-0"></div>
+  <div class="fixed top-0 left-1/4 w-96 h-96 ambient-glow-1 rounded-full pointer-events-none blur-3xl z-0"></div>
+  <div class="fixed bottom-10 right-1/4 w-96 h-96 ambient-glow-2 rounded-full pointer-events-none blur-3xl z-0"></div>
+
+  <!-- Cyber HUD Floating Navigation -->
+  <header id="main-navbar" class="fixed top-4 left-0 right-0 z-50 px-4 sm:px-8 max-w-7xl mx-auto">
+    <nav class="glass-panel rounded-2xl px-5 py-3.5 flex items-center justify-between border border-slate-800/80 shadow-2xl backdrop-blur-xl">
+      <!-- Logo / Brand -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 p-[1px] shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+          <div class="w-full h-full bg-[#030712] rounded-[11px] flex items-center justify-center font-orbitron font-black text-cyan-400 tracking-tighter">
+            TBG
+          </div>
+        </div>
+        <div>
+          <span class="font-orbitron font-bold text-sm tracking-wider text-white group-hover:text-cyan-400 transition-colors">THEERTHAN B G</span>
+          <span class="block text-[10px] font-mono text-slate-400 tracking-widest uppercase">Tech Innovator</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <div class="hidden md:flex items-center gap-7 font-mono text-xs tracking-wider">
+        <a href="#about" class="text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+          <span class="text-cyan-500 font-bold">01.</span> About
+        </a>
+        <a href="#achievements" class="text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+          <span class="text-purple-400 font-bold">02.</span> Achievements
+        </a>
+        <a href="#projects" class="text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+          <span class="text-emerald-400 font-bold">03.</span> Projects
+        </a>
+        <a href="#skills" class="text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+          <span class="text-pink-400 font-bold">04.</span> Skills
+        </a>
+        <a href="#blog" class="text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+          <span class="text-amber-400 font-bold">05.</span> Updates
+        </a>
+        <a href="#contact" class="text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+          <span class="text-cyan-400 font-bold">06.</span> Contact
+        </a>
+      </div>
+
+      <!-- Right HUD Controls: Audio Toggle & Quick Contact -->
+      <div class="flex items-center gap-3">
+        <!-- Audio Synth Toggle -->
+        <button id="sound-toggle-btn" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900/80 border border-cyan-500/30 text-xs font-mono text-cyan-300 hover:border-cyan-400 transition-all cursor-pointer shadow-inner">
+          <div class="flex items-end gap-[2px] h-4">
+            <span class="sound-bar"></span>
+            <span class="sound-bar"></span>
+            <span class="sound-bar"></span>
+            <span class="sound-bar"></span>
+          </div>
+          <span id="sound-toggle-text" class="hidden sm:inline">SFX: ON</span>
+        </button>
+
+        <!-- Social Quick Link: LinkedIn -->
+        <a href="https://www.linkedin.com/in/theerthan-bg-82b716408?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-xs font-mono text-cyan-400 hover:bg-cyan-500/20 transition-all">
+          <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+          <span>LinkedIn</span>
+        </a>
+
+        <!-- Mobile Menu Hamburger -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:text-cyan-400 focus:outline-none">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-2 glass-panel rounded-2xl p-5 border border-slate-800 shadow-2xl">
+      <div class="flex flex-col gap-4 font-mono text-sm">
+        <a href="#about" class="text-slate-300 hover:text-cyan-400 py-1 flex items-center justify-between border-b border-slate-800">
+          <span>01. About Me</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-cyan-500"></i>
+        </a>
+        <a href="#achievements" class="text-slate-300 hover:text-cyan-400 py-1 flex items-center justify-between border-b border-slate-800">
+          <span>02. Hackathons &amp; Certifications</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-purple-400"></i>
+        </a>
+        <a href="#projects" class="text-slate-300 hover:text-cyan-400 py-1 flex items-center justify-between border-b border-slate-800">
+          <span>03. Featured Projects</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-emerald-400"></i>
+        </a>
+        <a href="#skills" class="text-slate-300 hover:text-cyan-400 py-1 flex items-center justify-between border-b border-slate-800">
+          <span>04. Skills &amp; Tools</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-pink-400"></i>
+        </a>
+        <a href="#blog" class="text-slate-300 hover:text-cyan-400 py-1 flex items-center justify-between border-b border-slate-800">
+          <span>05. Theerthan Updates Blog</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-amber-400"></i>
+        </a>
+        <a href="#contact" class="text-slate-300 hover:text-cyan-400 py-1 flex items-center justify-between">
+          <span>06. Connect &amp; Contact</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-cyan-400"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION (Interactive 3D Holographic Core) -->
+  <section id="hero" class="relative min-h-screen pt-32 pb-20 px-4 sm:px-8 max-w-7xl mx-auto flex flex-col justify-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Column: Hero Content -->
+      <div class="lg:col-span-7 z-10 space-y-6">
+        
+        <!-- Live Status Pill -->
+        <div class="hero-stagger inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/90 border border-cyan-500/30 text-xs font-mono text-cyan-300 shadow-lg shadow-cyan-500/10">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 beacon-dot"></span>
+          <span>Hassan, Karnataka • Open for Tech &amp; AI Projects</span>
+        </div>
+
+        <!-- Main Name Title with Glitch Effect -->
+        <div class="hero-stagger space-y-2">
+          <h2 class="text-xs sm:text-sm font-mono tracking-widest text-cyan-400 uppercase font-semibold">
+            &lt;Hello World /&gt; I Am
+          </h2>
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-orbitron font-black text-white tracking-tight uppercase glitch-hover">
+            THEERTHAN <span class="text-gradient-cyan">B G</span>
+          </h1>
+        </div>
+
+        <!-- Dynamic Typewriter Subtitle -->
+        <div class="hero-stagger h-12 flex items-center">
+          <p class="text-lg sm:text-2xl font-mono font-medium text-slate-300 flex items-center gap-2">
+            <span class="text-purple-400">&gt;</span>
+            <span id="typewriter-text" class="text-gradient-purple font-semibold"></span>
+            <span class="w-2.5 h-6 bg-cyan-400 animate-pulse"></span>
+          </p>
+        </div>
+
+        <!-- Hero Description -->
+        <p class="hero-stagger text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
+          Passionate BCA Scholar, Hackathon Winner &amp; Creative Developer combining cutting-edge AI tools, UI/UX aesthetics, and cybersecurity fundamentals to craft impactful digital products.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="hero-stagger flex flex-wrap gap-4 pt-2">
+          <a href="#projects" class="cyber-button px-7 py-3.5 rounded-xl font-orbitron font-bold text-sm tracking-wider flex items-center gap-2.5">
+            <i data-lucide="sparkles" class="w-4 h-4 text-cyan-300"></i>
+            <span>EXPLORE PROJECTS</span>
+          </a>
+          <a href="#achievements" class="cyber-button-alt px-6 py-3.5 rounded-xl font-bold text-sm tracking-wider flex items-center gap-2.5">
+            <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+            <span>ACHIEVEMENTS</span>
+          </a>
+          <a href="https://theerthanupdates.blogspot.com/?m=1" target="_blank" rel="noopener noreferrer" class="cyber-button-alt px-5 py-3.5 rounded-xl font-bold text-sm tracking-wider flex items-center gap-2 text-cyan-400 border-cyan-500/30">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+            <span>MY BLOG</span>
+          </a>
+        </div>
+
+        <!-- Social Connect Hub Badges -->
+        <div class="hero-stagger pt-4 flex flex-wrap items-center gap-3">
+          <span class="text-xs font-mono text-slate-500 uppercase tracking-widest mr-1">Direct Links:</span>
+          
+          <a href="https://www.linkedin.com/in/theerthan-bg-82b716408?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/60 hover:text-cyan-400 text-slate-300 transition-all hover:scale-110" title="LinkedIn Profile">
+            <i data-lucide="linkedin" class="w-4 h-4"></i>
+          </a>
+
+          <a href="https://www.instagram.com/theerthan_bg?igsi=OGQ2cWFxZDQ2cmx1" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-pink-500/60 hover:text-pink-400 text-slate-300 transition-all hover:scale-110" title="Instagram Profile">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </a>
+
+          <a href="https://theerthanupdates.blogspot.com/?m=1" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/60 hover:text-amber-400 text-slate-300 transition-all hover:scale-110" title="Theerthan Updates Blog">
+            <i data-lucide="newspaper" class="w-4 h-4"></i>
+          </a>
+
+          <a href="https://github.com/theerthan-bg" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-purple-500/60 hover:text-purple-400 text-slate-300 transition-all hover:scale-110" title="GitHub Profile">
+            <i data-lucide="github" class="w-4 h-4"></i>
+          </a>
+
+          <button class="copy-email-btn px-3 py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/60 hover:text-emerald-400 text-slate-300 transition-all text-xs font-mono flex items-center gap-1.5" title="Copy Email">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>theerthangowda724@gmail.com</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Right Column: 3D Holographic Interactive Canvas -->
+      <div class="lg:col-span-5 relative flex justify-center items-center">
+        
+        <!-- 3D Canvas Box -->
+        <div class="relative w-full max-w-lg aspect-square rounded-3xl glass-panel p-2 neon-border-cyan overflow-hidden shadow-2xl group">
+          
+          <!-- Top HUD Header -->
+          <div class="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none font-mono text-[11px] text-cyan-400/80">
+            <span class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+              CORE.HOLO.3D // ACTIVE
+            </span>
+            <span id="live-clock" class="text-slate-400">00:00:00 IST</span>
+          </div>
+
+          <!-- WebGL Three.js Mount Container -->
+          <div id="hero-3d-canvas-container" class="w-full h-full rounded-2xl cursor-grab active:cursor-grabbing"></div>
+
+          <!-- Bottom HUD Footer with Interaction Prompt -->
+          <div class="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none font-mono text-[10px] text-slate-400">
+            <span class="flex items-center gap-1">
+              <i data-lucide="move-3d" class="w-3 h-3 text-cyan-400"></i>
+              DRAG / MOVE TO ROTATE
+            </span>
+            <span class="text-cyan-400/90 font-semibold">[ CLICK FOR PULSE ]</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Live Stats Ticker HUD -->
+    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+      
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800/90 relative overflow-hidden" data-tilt>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-slate-400">HACKATHONS</span>
+          <i data-lucide="award" class="w-5 h-5 text-cyan-400"></i>
+        </div>
+        <div class="text-3xl sm:text-4xl font-orbitron font-black text-white flex items-baseline gap-1">
+          <span class="stat-counter" data-target="2">0</span><span class="text-cyan-400">+</span>
+        </div>
+        <p class="text-[11px] text-slate-400 font-mono mt-1">SDM Jhenkar &amp; Confluence</p>
+      </div>
+
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800/90 relative overflow-hidden" data-tilt>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-slate-400">CERTIFICATIONS</span>
+          <i data-lucide="check-check" class="w-5 h-5 text-purple-400"></i>
+        </div>
+        <div class="text-3xl sm:text-4xl font-orbitron font-black text-white flex items-baseline gap-1">
+          <span class="stat-counter" data-target="4">0</span><span class="text-purple-400">+</span>
+        </div>
+        <p class="text-[11px] text-slate-400 font-mono mt-1">Intellipaat AI &amp; be10x</p>
+      </div>
+
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800/90 relative overflow-hidden" data-tilt>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-slate-400">TECH ARTIFACTS</span>
+          <i data-lucide="code-2" class="w-5 h-5 text-emerald-400"></i>
+        </div>
+        <div class="text-3xl sm:text-4xl font-orbitron font-black text-white flex items-baseline gap-1">
+          <span class="stat-counter" data-target="10">0</span><span class="text-emerald-400">+</span>
+        </div>
+        <p class="text-[11px] text-slate-400 font-mono mt-1">Web, AI &amp; Prototype Builds</p>
+      </div>
+
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800/90 relative overflow-hidden" data-tilt>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-mono text-slate-400">ORIGIN</span>
+          <i data-lucide="map-pin" class="w-5 h-5 text-amber-400"></i>
+        </div>
+        <div class="text-xl sm:text-2xl font-orbitron font-bold text-white flex items-baseline gap-1">
+          HASSAN, KA
+        </div>
+        <p class="text-[11px] text-slate-400 font-mono mt-1">Karnataka, India</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 01: ABOUT ME & ORIGIN STORY -->
+  <section id="about" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto section-fade-in relative">
+    <div class="flex flex-col items-center text-center space-y-3 mb-16">
+      <span class="text-xs font-mono text-cyan-400 tracking-widest uppercase bg-cyan-500/10 px-3.5 py-1 rounded-full border border-cyan-500/20">
+        // 01. Origin &amp; Identity
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-orbitron font-extrabold text-white">
+        ABOUT <span class="text-gradient-cyan">THEERTHAN</span>
+      </h2>
+      <p class="text-slate-400 max-w-2xl text-sm sm:text-base">
+        A glimpse into my educational background, passion for software development, and drive for tech innovation.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Left: Interactive Cyber Identity Card -->
+      <div class="lg:col-span-5 relative" data-tilt>
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-800 relative overflow-hidden group shadow-2xl">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-bl-full pointer-events-none blur-2xl"></div>
+          
+          <!-- Profile Visual Avatar with Holographic Rings -->
+          <div class="relative w-40 h-40 mx-auto mb-6 rounded-2xl overflow-hidden border-2 border-cyan-500/40 p-1 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 shadow-xl">
+            <img 
+              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEir5AoyX_TJUU3AGROnV3hivMa0npuLP4hSGuP3EVvafIKY6goY5QY9p1W_cQLE8pi7Uw2Rn_3nD9E-W6KiyiK1jhDKCYUvw68flUXEEDpRDzSggQdUPUsbks1jTAmsD0StL24nZYsMNlntkiXxIuPqIjxBKQGt1g6mL-FRrRW-d4LV1Og4TRoCZGmznXY/s600/IMG-20260805-WA0022.jpg" 
+              alt="Theerthan B G" 
+              class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+              onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=60'"
+            />
+            <div class="absolute inset-0 scanline pointer-events-none"></div>
+          </div>
+
+          <div class="text-center space-y-2 mb-6">
+            <h3 class="text-2xl font-orbitron font-bold text-white">THEERTHAN B G</h3>
+            <p class="text-xs font-mono text-cyan-400">BCA Scholar • Tech Creator</p>
+            <div class="inline-flex items-center gap-1.5 text-xs text-slate-400 font-mono">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>Hassan, Karnataka, India</span>
+            </div>
+          </div>
+
+          <!-- Quick Bio Code Terminal -->
+          <div class="bg-black/60 rounded-xl p-4 font-mono text-xs text-slate-300 border border-slate-800/80 space-y-1.5 text-left">
+            <p class="text-slate-500">// Terminal Bio Representation</p>
+            <p><span class="text-purple-400">const</span> <span class="text-cyan-400">theerthan</span> = {</p>
+            <p class="pl-4"><span class="text-emerald-400">degree</span>: <span class="text-amber-300">"Bachelor of Computer Applications"</span>,</p>
+            <p class="pl-4"><span class="text-emerald-400">location</span>: <span class="text-amber-300">"Hassan, Karnataka"</span>,</p>
+            <p class="pl-4"><span class="text-emerald-400">passions</span>: [<span class="text-cyan-300">"AI"</span>, <span class="text-purple-300">"Cybersecurity"</span>, <span class="text-emerald-300">"UI/UX"</span>],</p>
+            <p class="pl-4"><span class="text-emerald-400">philosophy</span>: <span class="text-amber-300">"Learn by building real solutions"</span></p>
+            <p>};</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: Detailed Story & Core Pillars -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-4">
+          <h3 class="text-xl sm:text-2xl font-orbitron font-bold text-white flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full bg-cyan-400"></span>
+            Building Tomorrow's Digital Experiences
+          </h3>
+          <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+            Hi, I'm <strong class="text-cyan-300">Theerthan</strong>, a BCA student based in <strong>Hassan, Karnataka</strong>, with a relentless drive for technology, innovation, and creative design.
+          </p>
+          <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+            I actively explore <span class="text-purple-300 font-semibold">Software Development</span>, <span class="text-emerald-300 font-semibold">Cybersecurity</span>, <span class="text-cyan-300 font-semibold">Artificial Intelligence &amp; Prompt Engineering</span>, and <span class="text-pink-300 font-semibold">UI/UX Design</span>. I firmly believe in learning by constructing real-world software, collaborating in high-pressure hackathons, and continuously expanding my technical horizon.
+          </p>
+          <p class="text-slate-400 leading-relaxed text-sm">
+            Having participated in and triumphed at university and state-level hackathons, I continuously refine my problem-solving mindset, technical architecture, and team leadership to develop software that leaves a meaningful mark.
+          </p>
+        </div>
+
+        <!-- 4 Core Pillars -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <div class="glass-panel p-4 rounded-2xl border border-slate-800 hover:border-cyan-500/40 transition-all flex items-start gap-3.5">
+            <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 shrink-0">
+              <i data-lucide="zap" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="font-orbitron font-bold text-sm text-white">Rapid Prototyping</h4>
+              <p class="text-xs text-slate-400 mt-1">Accelerating ideas from sketch to working interactive prototypes.</p>
+            </div>
+          </div>
+
+          <div class="glass-panel p-4 rounded-2xl border border-slate-800 hover:border-purple-500/40 transition-all flex items-start gap-3.5">
+            <div class="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 shrink-0">
+              <i data-lucide="brain-circuit" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="font-orbitron font-bold text-sm text-white">AI-Powered Workflows</h4>
+              <p class="text-xs text-slate-400 mt-1">Leveraging state-of-the-art GenAI, ChatGPT, and automation tools.</p>
+            </div>
+          </div>
+
+          <div class="glass-panel p-4 rounded-2xl border border-slate-800 hover:border-emerald-500/40 transition-all flex items-start gap-3.5">
+            <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 shrink-0">
+              <i data-lucide="palette" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="font-orbitron font-bold text-sm text-white">Creative UI/UX Design</h4>
+              <p class="text-xs text-slate-400 mt-1">Crafting user-centric Figma wireframes and modern interfaces.</p>
+            </div>
+          </div>
+
+          <div class="glass-panel p-4 rounded-2xl border border-slate-800 hover:border-amber-500/40 transition-all flex items-start gap-3.5">
+            <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 shrink-0">
+              <i data-lucide="users" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="font-orbitron font-bold text-sm text-white">Hackathon Leadership</h4>
+              <p class="text-xs text-slate-400 mt-1">Effective pitching, strategic execution, and cross-team synergy.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 02: HACKATHONS & ACHIEVEMENTS -->
+  <section id="achievements" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto section-fade-in relative">
+    <div class="flex flex-col items-center text-center space-y-3 mb-16">
+      <span class="text-xs font-mono text-purple-400 tracking-widest uppercase bg-purple-500/10 px-3.5 py-1 rounded-full border border-purple-500/20">
+        // 02. Verified Milestones
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-orbitron font-extrabold text-white">
+        HACKATHONS &amp; <span class="text-gradient-purple">ACHIEVEMENTS</span>
+      </h2>
+      <p class="text-slate-400 max-w-2xl text-sm sm:text-base">
+        Documented proof of hackathon presentations, competitive coding milestones, and official AI certifications. Click any item to inspect full credentials.
+      </p>
+    </div>
+
+    <!-- Achievements Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Card 1: SDM Jhenkar Season 6 -->
+      <div class="glass-panel rounded-3xl p-6 border border-slate-800 hover:border-cyan-500/50 transition-all cursor-pointer group" data-tilt onclick="openCertModal('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVpCxrre9tI9Hu1N2PntfKmsZO49xn_csOBvRPedo50VDDupu5G1H_SafhL5YN1EJsi9-ba9snZ2Tuv4COlnwKivBvk9olEny0KgGejjVe80CDjb3N0GBj4vRFhymtbaAKOb3EfNrwu8gWl-Jlsk-4-NZZCX7aW0_fpBl2tUIUAvv4vwY_qkK-39oEzPQ/s949/IMG-20260805-WA0028.jpg', 'SDM Jhenkar Season 6 Event &amp; Hackathon', 'SDM Institute of Technology', 'Team Presentation &amp; Hackathon Participation. Presented innovative technology solutions and demonstrated strong teamwork and execution.')">
+        <div class="relative h-56 rounded-2xl overflow-hidden mb-5 bg-slate-950 border border-slate-800">
+          <img 
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVpCxrre9tI9Hu1N2PntfKmsZO49xn_csOBvRPedo50VDDupu5G1H_SafhL5YN1EJsi9-ba9snZ2Tuv4COlnwKivBvk9olEny0KgGejjVe80CDjb3N0GBj4vRFhymtbaAKOb3EfNrwu8gWl-Jlsk-4-NZZCX7aW0_fpBl2tUIUAvv4vwY_qkK-39oEzPQ/s600/IMG-20260805-WA0028.jpg" 
+            alt="SDM Jhenkar Season 6" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-cyan-500/80 backdrop-blur-md text-[11px] font-mono font-bold text-black flex items-center gap-1">
+            <i data-lucide="external-link" class="w-3 h-3"></i> Click to Zoom
+          </div>
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs font-mono text-cyan-400">
+            <span>HACKATHON &amp; EVENT</span>
+            <span class="text-slate-400">SDM Institutions</span>
+          </div>
+          <h3 class="text-xl font-orbitron font-bold text-white group-hover:text-cyan-300 transition-colors">
+            SDM Jhenkar Season 6 Hackathon
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Collaborated with team members to architect, pitch, and present real-time technological solutions during this marquee technical symposium.
+          </p>
+          <div class="pt-3 flex flex-wrap gap-2">
+            <span class="tech-tag">Team Presentation</span>
+            <span class="tech-tag">Hackathon</span>
+            <span class="tech-tag">Innovation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Confluence 2.0 Hackathon -->
+      <div class="glass-panel rounded-3xl p-6 border border-slate-800 hover:border-purple-500/50 transition-all cursor-pointer group" data-tilt onclick="openCertModal('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGJoxDAwD2DROwHZoHctz2M7WTWfXEOE-bQM_I3ZoSz5zwljtfgcfM7iy3NQdKdMenS1Sx3rj_U0VFmckD9tAlPcguEdQfy-Vo8bo6QJ-R4gE2uxxZzyddaWCBEKfXmICABPY8aMDk0iteoiZ0eAzT6anlHhG4-bQrxUSDT9Ab0hpVFS0iGU3m0gotd9I/s1032/IMG-20260805-WA0031.jpg', 'Confluence 2.0 Hackathon Certificate', 'Confluence 2.0 Organizing Committee', 'Awarded for demonstrating exemplary software engineering, rapid problem solving, and collaborative project development.')">
+        <div class="relative h-56 rounded-2xl overflow-hidden mb-5 bg-slate-950 border border-slate-800">
+          <img 
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGJoxDAwD2DROwHZoHctz2M7WTWfXEOE-bQM_I3ZoSz5zwljtfgcfM7iy3NQdKdMenS1Sx3rj_U0VFmckD9tAlPcguEdQfy-Vo8bo6QJ-R4gE2uxxZzyddaWCBEKfXmICABPY8aMDk0iteoiZ0eAzT6anlHhG4-bQrxUSDT9Ab0hpVFS0iGU3m0gotd9I/s600/IMG-20260805-WA0031.jpg" 
+            alt="Confluence 2.0 Hackathon" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-purple-500/80 backdrop-blur-md text-[11px] font-mono font-bold text-white flex items-center gap-1">
+            <i data-lucide="external-link" class="w-3 h-3"></i> Click to Zoom
+          </div>
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs font-mono text-purple-400">
+            <span>STATE HACKATHON</span>
+            <span class="text-slate-400">Confluence 2.0</span>
+          </div>
+          <h3 class="text-xl font-orbitron font-bold text-white group-hover:text-purple-300 transition-colors">
+            Confluence 2.0 Hackathon Award
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Engineered high-velocity software modules with teammates under tight deadline constraints, earning recognition for technical execution.
+          </p>
+          <div class="pt-3 flex flex-wrap gap-2">
+            <span class="tech-tag">Certificate</span>
+            <span class="tech-tag">Rapid Coding</span>
+            <span class="tech-tag">Team Victory</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Intellipaat AI Bootcamp -->
+      <div class="glass-panel rounded-3xl p-6 border border-slate-800 hover:border-emerald-500/50 transition-all cursor-pointer group" data-tilt onclick="openCertModal('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-pB6sG237LlFiCVRt7kmFUqpoK6vbfIikrEfxBNm8ycNx0Mfujzf6ioy62B1rsQ2tysaYMFlFKQ6Qe83N2cAfF4Jb1CCRyafM9dQov1R_tXLmvMux0XwgUpxe4yTt_aTr-AW9R5iLcdLgR1RZnuHDw-txT2wTnqkRCXJ8K8IYAkZJb5MX37tlQjbcgis/s720/IMG-20260805-WA0026.jpg', 'Intellipaat AI Bootcamp Certification', 'Intellipaat', 'Comprehensive Artificial Intelligence bootcamp covering deep neural models, generative AI fundamentals, machine learning workflows, and practical applications.')">
+        <div class="relative h-56 rounded-2xl overflow-hidden mb-5 bg-slate-950 border border-slate-800">
+          <img 
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-pB6sG237LlFiCVRt7kmFUqpoK6vbfIikrEfxBNm8ycNx0Mfujzf6ioy62B1rsQ2tysaYMFlFKQ6Qe83N2cAfF4Jb1CCRyafM9dQov1R_tXLmvMux0XwgUpxe4yTt_aTr-AW9R5iLcdLgR1RZnuHDw-txT2wTnqkRCXJ8K8IYAkZJb5MX37tlQjbcgis/s600/IMG-20260805-WA0026.jpg" 
+            alt="Intellipaat AI Bootcamp" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-emerald-500/80 backdrop-blur-md text-[11px] font-mono font-bold text-black flex items-center gap-1">
+            <i data-lucide="external-link" class="w-3 h-3"></i> Click to Zoom
+          </div>
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs font-mono text-emerald-400">
+            <span>AI CERTIFICATION</span>
+            <span class="text-slate-400">Intellipaat</span>
+          </div>
+          <h3 class="text-xl font-orbitron font-bold text-white group-hover:text-emerald-300 transition-colors">
+            Intellipaat AI Bootcamp Certified
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Rigorous training in Artificial Intelligence pipelines, data preprocessing, machine learning algorithms, and real-world AI deployment.
+          </p>
+          <div class="pt-3 flex flex-wrap gap-2">
+            <span class="tech-tag">Artificial Intelligence</span>
+            <span class="tech-tag">ML Fundamentals</span>
+            <span class="tech-tag">Bootcamp</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: be10x AI Tools & ChatGPT -->
+      <div class="glass-panel rounded-3xl p-6 border border-slate-800 hover:border-amber-500/50 transition-all cursor-pointer group" data-tilt onclick="openCertModal('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEilyMCh-S5MmcI7ZBm06s85bJrKr5cbmgWuxE1HMloRh-mdbvuE0lgl7Yey0sz5s6eEb_keyDZAW71EFxjbbccnfZ1FKKxmUP6csFmziHX9Uv0etejH-6Z8p2fR-qRF6MnHEFnFAdccrOftZHqchngIfvO86NmYmjEsl_Yl92keDlXoz7TRML7U-zyUqRM/s720/IMG-20260805-WA0027.jpg', 'be10x AI Tools &amp; ChatGPT Workshop Holder', 'be10x Innovation Academy', 'Mastery in generative AI workflows, advanced prompt engineering, productivity automation, and ChatGPT tool integrations.')">
+        <div class="relative h-56 rounded-2xl overflow-hidden mb-5 bg-slate-950 border border-slate-800">
+          <img 
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEilyMCh-S5MmcI7ZBm06s85bJrKr5cbmgWuxE1HMloRh-mdbvuE0lgl7Yey0sz5s6eEb_keyDZAW71EFxjbbccnfZ1FKKxmUP6csFmziHX9Uv0etejH-6Z8p2fR-qRF6MnHEFnFAdccrOftZHqchngIfvO86NmYmjEsl_Yl92keDlXoz7TRML7U-zyUqRM/s600/IMG-20260805-WA0027.jpg" 
+            alt="be10x AI Tools Workshop" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-amber-500/80 backdrop-blur-md text-[11px] font-mono font-bold text-black flex items-center gap-1">
+            <i data-lucide="external-link" class="w-3 h-3"></i> Click to Zoom
+          </div>
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs font-mono text-amber-400">
+            <span>PROMPT ENGINEERING</span>
+            <span class="text-slate-400">be10x Academy</span>
+          </div>
+          <h3 class="text-xl font-orbitron font-bold text-white group-hover:text-amber-300 transition-colors">
+            be10x AI Tools &amp; ChatGPT Workshop
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Hands-on expertise in prompt crafting, automated content workflows, and AI tool ecosystems to optimize developer efficiency.
+          </p>
+          <div class="pt-3 flex flex-wrap gap-2">
+            <span class="tech-tag">ChatGPT</span>
+            <span class="tech-tag">Prompt Engineering</span>
+            <span class="tech-tag">Workflow Automation</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 03: FEATURED PROJECTS -->
+  <section id="projects" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto section-fade-in relative">
+    <div class="flex flex-col items-center text-center space-y-3 mb-12">
+      <span class="text-xs font-mono text-emerald-400 tracking-widest uppercase bg-emerald-500/10 px-3.5 py-1 rounded-full border border-emerald-500/20">
+        // 03. Engineering Portfolio
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-orbitron font-extrabold text-white">
+        FEATURED <span class="text-gradient-emerald">PROJECTS</span>
+      </h2>
+      <p class="text-slate-400 max-w-2xl text-sm sm:text-base">
+        A curation of software applications, AI tooling platforms, web portals, and creative prototypes.
+      </p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12 font-mono text-xs">
+      <button class="project-filter-btn px-4 py-2 rounded-xl bg-cyan-500/20 border border-cyan-400 text-cyan-300 transition-all cursor-pointer font-semibold" data-filter="all">
+        ALL PROJECTS
+      </button>
+      <button class="project-filter-btn px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-400 hover:border-cyan-500/40 hover:text-cyan-300 transition-all cursor-pointer" data-filter="ai">
+        AI &amp; AUTOMATION
+      </button>
+      <button class="project-filter-btn px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-400 hover:border-cyan-500/40 hover:text-cyan-300 transition-all cursor-pointer" data-filter="web">
+        WEB APPS
+      </button>
+      <button class="project-filter-btn px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-700 text-slate-400 hover:border-cyan-500/40 hover:text-cyan-300 transition-all cursor-pointer" data-filter="design">
+        UI/UX &amp; SYSTEMS
+      </button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Project 1: AI Nexus Suite -->
+      <div class="project-card glass-panel rounded-3xl p-6 border border-slate-800 flex flex-col justify-between group hover:border-cyan-500/50 transition-all" data-category="ai web" data-tilt>
+        <div class="space-y-4">
+          <div class="h-44 rounded-2xl bg-gradient-to-br from-cyan-950/60 via-slate-900 to-purple-950/60 p-5 flex flex-col justify-between border border-slate-800 relative overflow-hidden">
+            <div class="flex items-center justify-between z-10">
+              <span class="px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-400 font-mono text-[10px] uppercase font-bold border border-cyan-500/30">AI Suite</span>
+              <i data-lucide="sparkles" class="w-5 h-5 text-cyan-400"></i>
+            </div>
+            <div class="z-10">
+              <h4 class="text-xl font-orbitron font-bold text-white group-hover:text-cyan-300 transition-colors">AI Nexus Studio</h4>
+              <p class="text-xs font-mono text-slate-400">Multi-Model GenAI Prompt Hub</p>
+            </div>
+            <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-cyan-500/10 rounded-full blur-xl"></div>
+          </div>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            An intelligent workspace integrating prompt chaining, smart document analysis, and generative assistance built using modern AI pipelines and prompt engineering best practices.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <span class="tech-tag">Prompt Engineering</span>
+            <span class="tech-tag">GenAI APIs</span>
+            <span class="tech-tag">Tailwind</span>
+          </div>
+        </div>
+        <div class="pt-6 flex items-center justify-between border-t border-slate-800/80 mt-4">
+          <a href="https://github.com/theerthan-bg" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-cyan-400 hover:underline flex items-center gap-1">
+            <span>View Source</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+          <a href="https://theerthanupdates.blogspot.com/2026/08/my-projects.html" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 font-mono text-xs border border-cyan-500/30 flex items-center gap-1.5">
+            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+            <span>Details</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2: Theerthan Updates Portal -->
+      <div class="project-card glass-panel rounded-3xl p-6 border border-slate-800 flex flex-col justify-between group hover:border-amber-500/50 transition-all" data-category="web design" data-tilt>
+        <div class="space-y-4">
+          <div class="h-44 rounded-2xl bg-gradient-to-br from-amber-950/60 via-slate-900 to-slate-950 p-5 flex flex-col justify-between border border-slate-800 relative overflow-hidden">
+            <div class="flex items-center justify-between z-10">
+              <span class="px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-400 font-mono text-[10px] uppercase font-bold border border-amber-500/30">Live Platform</span>
+              <i data-lucide="rss" class="w-5 h-5 text-amber-400"></i>
+            </div>
+            <div class="z-10">
+              <h4 class="text-xl font-orbitron font-bold text-white group-hover:text-amber-300 transition-colors">Theerthan Updates</h4>
+              <p class="text-xs font-mono text-slate-400">Educational Tech Publishing</p>
+            </div>
+            <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-amber-500/10 rounded-full blur-xl"></div>
+          </div>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Personal tech portal created for educational purposes, sharing real-time insights on hackathons, artificial intelligence breakthroughs, and project milestones.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <span class="tech-tag">Blogger CMS</span>
+            <span class="tech-tag">HTML5 / CSS3</span>
+            <span class="tech-tag">SEO &amp; Content</span>
+          </div>
+        </div>
+        <div class="pt-6 flex items-center justify-between border-t border-slate-800/80 mt-4">
+          <a href="https://theerthanupdates.blogspot.com/?m=1" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-amber-400 hover:underline flex items-center gap-1">
+            <span>Visit Live Blog</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+          <a href="https://theerthanupdates.blogspot.com/2026/08/who-i-am.html" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 font-mono text-xs border border-amber-500/30 flex items-center gap-1.5">
+            <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+            <span>Read Article</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3: CyberGuard Sentinel -->
+      <div class="project-card glass-panel rounded-3xl p-6 border border-slate-800 flex flex-col justify-between group hover:border-purple-500/50 transition-all" data-category="web design" data-tilt>
+        <div class="space-y-4">
+          <div class="h-44 rounded-2xl bg-gradient-to-br from-purple-950/60 via-slate-900 to-cyan-950/60 p-5 flex flex-col justify-between border border-slate-800 relative overflow-hidden">
+            <div class="flex items-center justify-between z-10">
+              <span class="px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-400 font-mono text-[10px] uppercase font-bold border border-purple-500/30">Security</span>
+              <i data-lucide="shield-check" class="w-5 h-5 text-purple-400"></i>
+            </div>
+            <div class="z-10">
+              <h4 class="text-xl font-orbitron font-bold text-white group-hover:text-purple-300 transition-colors">CyberGuard Sentinel</h4>
+              <p class="text-xs font-mono text-slate-400">Vulnerability &amp; Threat HUD</p>
+            </div>
+            <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-purple-500/10 rounded-full blur-xl"></div>
+          </div>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            Cybersecurity monitoring interface prototype designed to track system vulnerabilities, suspicious network access patterns, and threat prevention metrics.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <span class="tech-tag">Cybersecurity</span>
+            <span class="tech-tag">UI/UX Design</span>
+            <span class="tech-tag">Threat Logic</span>
+          </div>
+        </div>
+        <div class="pt-6 flex items-center justify-between border-t border-slate-800/80 mt-4">
+          <a href="https://github.com/theerthan-bg" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-purple-400 hover:underline flex items-center gap-1">
+            <span>Explore Code</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+          <a href="#contact" class="px-3 py-1.5 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 font-mono text-xs border border-purple-500/30 flex items-center gap-1.5">
+            <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+            <span>Inquire</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 4: AgroExport Global B2B -->
+      <div class="project-card glass-panel rounded-3xl p-6 border border-slate-800 flex flex-col justify-between group hover:border-emerald-500/50 transition-all" data-category="web design" data-tilt>
+        <div class="space-y-4">
+          <div class="h-44 rounded-2xl bg-gradient-to-br from-emerald-950/60 via-slate-900 to-slate-950 p-5 flex flex-col justify-between border border-slate-800 relative overflow-hidden">
+            <div class="flex items-center justify-between z-10">
+              <span class="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-mono text-[10px] uppercase font-bold border border-emerald-500/30">Trade Tech</span>
+              <i data-lucide="globe" class="w-5 h-5 text-emerald-400"></i>
+            </div>
+            <div class="z-10">
+              <h4 class="text-xl font-orbitron font-bold text-white group-hover:text-emerald-300 transition-colors">AgroExport Hub</h4>
+              <p class="text-xs font-mono text-slate-400">Hassan Coconut &amp; Agri Trade</p>
+            </div>
+            <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-emerald-500/10 rounded-full blur-xl"></div>
+          </div>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            A specialized B2B agro-commodity trade portal connecting Hassan district coconut cultivators and exporters with global buyers through automated quote generators.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <span class="tech-tag">B2B Commerce</span>
+            <span class="tech-tag">Agri-Tech</span>
+            <span class="tech-tag">Figma Prototype</span>
+          </div>
+        </div>
+        <div class="pt-6 flex items-center justify-between border-t border-slate-800/80 mt-4">
+          <a href="https://github.com/theerthan-bg" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-emerald-400 hover:underline flex items-center gap-1">
+            <span>GitHub Repository</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+          <span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-mono">B2B Trade</span>
+        </div>
+      </div>
+
+      <!-- Project 5: Glassmorphic UI/UX Design System -->
+      <div class="project-card glass-panel rounded-3xl p-6 border border-slate-800 flex flex-col justify-between group hover:border-pink-500/50 transition-all" data-category="design" data-tilt>
+        <div class="space-y-4">
+          <div class="h-44 rounded-2xl bg-gradient-to-br from-pink-950/60 via-slate-900 to-purple-950/60 p-5 flex flex-col justify-between border border-slate-800 relative overflow-hidden">
+            <div class="flex items-center justify-between z-10">
+              <span class="px-2.5 py-1 rounded-md bg-pink-500/20 text-pink-400 font-mono text-[10px] uppercase font-bold border border-pink-500/30">Design System</span>
+              <i data-lucide="layout" class="w-5 h-5 text-pink-400"></i>
+            </div>
+            <div class="z-10">
+              <h4 class="text-xl font-orbitron font-bold text-white group-hover:text-pink-300 transition-colors">Nova UI/UX Kit</h4>
+              <p class="text-xs font-mono text-slate-400">Futuristic Design Tokens in Figma</p>
+            </div>
+            <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-pink-500/10 rounded-full blur-xl"></div>
+          </div>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            A comprehensive design library comprising 40+ responsive cyber-styled UI components, micro-interactions, dark mode color hierarchies, and accessibility-first assets.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <span class="tech-tag">Figma</span>
+            <span class="tech-tag">UI/UX Systems</span>
+            <span class="tech-tag">Wireframing</span>
+          </div>
+        </div>
+        <div class="pt-6 flex items-center justify-between border-t border-slate-800/80 mt-4">
+          <a href="https://github.com/theerthan-bg" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-pink-400 hover:underline flex items-center gap-1">
+            <span>Explore Designs</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+          <span class="px-2 py-1 rounded bg-pink-500/10 text-pink-400 text-[10px] font-mono">Figma Component</span>
+        </div>
+      </div>
+
+      <!-- Project 6: HackPitch Pro -->
+      <div class="project-card glass-panel rounded-3xl p-6 border border-slate-800 flex flex-col justify-between group hover:border-cyan-500/50 transition-all" data-category="ai web" data-tilt>
+        <div class="space-y-4">
+          <div class="h-44 rounded-2xl bg-gradient-to-br from-cyan-950/60 via-slate-900 to-emerald-950/60 p-5 flex flex-col justify-between border border-slate-800 relative overflow-hidden">
+            <div class="flex items-center justify-between z-10">
+              <span class="px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-400 font-mono text-[10px] uppercase font-bold border border-cyan-500/30">Pitch Tool</span>
+              <i data-lucide="presentation" class="w-5 h-5 text-cyan-400"></i>
+            </div>
+            <div class="z-10">
+              <h4 class="text-xl font-orbitron font-bold text-white group-hover:text-cyan-300 transition-colors">HackPitch Pro</h4>
+              <p class="text-xs font-mono text-slate-400">Rapid Hackathon Pitch Assistant</p>
+            </div>
+            <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-cyan-500/10 rounded-full blur-xl"></div>
+          </div>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            An automated presentation builder that formats project architectures, problem statements, and business metrics for hackathon judging panels.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <span class="tech-tag">Presentation Tech</span>
+            <span class="tech-tag">AI Workflows</span>
+            <span class="tech-tag">Hackathons</span>
+          </div>
+        </div>
+        <div class="pt-6 flex items-center justify-between border-t border-slate-800/80 mt-4">
+          <a href="https://theerthanupdates.blogspot.com/2026/08/my-achivements.html" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-cyan-400 hover:underline flex items-center gap-1">
+            <span>Hackathon Proof</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-400 text-[10px] font-mono">Live Concept</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 04: SKILLS MATRIX & TECH RADAR -->
+  <section id="skills" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto section-fade-in relative">
+    <div class="flex flex-col items-center text-center space-y-3 mb-16">
+      <span class="text-xs font-mono text-pink-400 tracking-widest uppercase bg-pink-500/10 px-3.5 py-1 rounded-full border border-pink-500/20">
+        // 04. Technical Capabilities
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-orbitron font-extrabold text-white">
+        SKILLS &amp; <span class="text-gradient-multi">TECH STACK</span>
+      </h2>
+      <p class="text-slate-400 max-w-2xl text-sm sm:text-base">
+        A breakdown of programming languages, AI tooling suites, creative design software, and core computer science competencies.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Category 1: Frontend & Web -->
+      <div class="glass-panel rounded-3xl p-6 border border-slate-800 space-y-4" data-tilt>
+        <div class="flex items-center gap-3 text-cyan-400">
+          <div class="p-2.5 rounded-xl bg-cyan-500/10">
+            <i data-lucide="code" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-orbitron font-bold text-white text-base">Frontend &amp; Web</h3>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">HTML5 &amp; Semantic UI</span>
+              <span class="text-cyan-400">95%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-cyan-400 w-[95%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">CSS3 / Tailwind &amp; HUD</span>
+              <span class="text-cyan-400">90%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-cyan-400 w-[90%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">JavaScript &amp; 3D/WebGL</span>
+              <span class="text-cyan-400">82%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-cyan-400 w-[82%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">Responsive UX</span>
+              <span class="text-cyan-400">92%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-cyan-400 w-[92%]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 2: AI & Prompt Engineering -->
+      <div class="glass-panel rounded-3xl p-6 border border-slate-800 space-y-4" data-tilt>
+        <div class="flex items-center gap-3 text-purple-400">
+          <div class="p-2.5 rounded-xl bg-purple-500/10">
+            <i data-lucide="cpu" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-orbitron font-bold text-white text-base">AI &amp; Automation</h3>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">Prompting &amp; ChatGPT</span>
+              <span class="text-purple-400">96%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-purple-400 w-[96%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">be10x Productivity Tools</span>
+              <span class="text-purple-400">90%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-purple-400 w-[90%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">Intellipaat AI Models</span>
+              <span class="text-purple-400">85%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-purple-400 w-[85%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">AI Coding Workflows</span>
+              <span class="text-purple-400">92%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-purple-400 w-[92%]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 3: UI/UX & Creative Design -->
+      <div class="glass-panel rounded-3xl p-6 border border-slate-800 space-y-4" data-tilt>
+        <div class="flex items-center gap-3 text-pink-400">
+          <div class="p-2.5 rounded-xl bg-pink-500/10">
+            <i data-lucide="figma" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-orbitron font-bold text-white text-base">UI/UX &amp; Design</h3>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">Figma Wireframing</span>
+              <span class="text-pink-400">90%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-pink-400 w-[90%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">Visual Hierarchy</span>
+              <span class="text-pink-400">92%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-pink-400 w-[92%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">Interactive Prototyping</span>
+              <span class="text-pink-400">88%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-pink-400 w-[88%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">Graphic Asset Creation</span>
+              <span class="text-pink-400">86%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-pink-400 w-[86%]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 4: Problem Solving & Core CS -->
+      <div class="glass-panel rounded-3xl p-6 border border-slate-800 space-y-4" data-tilt>
+        <div class="flex items-center gap-3 text-emerald-400">
+          <div class="p-2.5 rounded-xl bg-emerald-500/10">
+            <i data-lucide="shield" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-orbitron font-bold text-white text-base">Core CS &amp; Security</h3>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">Problem Solving &amp; Logic</span>
+              <span class="text-emerald-400">94%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-emerald-400 w-[94%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">Cybersecurity Concepts</span>
+              <span class="text-emerald-400">82%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-emerald-400 w-[82%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">Team Collaboration</span>
+              <span class="text-emerald-400">96%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-emerald-400 w-[96%]"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-300">Git &amp; Version Control</span>
+              <span class="text-emerald-400">85%</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full rounded-full bg-emerald-400 w-[85%]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 05: THEERTHAN UPDATES BLOG -->
+  <section id="blog" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto section-fade-in relative">
+    <div class="flex flex-col items-center text-center space-y-3 mb-16">
+      <span class="text-xs font-mono text-amber-400 tracking-widest uppercase bg-amber-500/10 px-3.5 py-1 rounded-full border border-amber-500/20">
+        // 05. Publishing &amp; Insights
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-orbitron font-extrabold text-white">
+        THEERTHAN <span class="text-gradient-amber">UPDATES</span>
+      </h2>
+      <p class="text-slate-400 max-w-2xl text-sm sm:text-base">
+        Direct dispatches from my official educational blog covering latest hackathon breakthroughs, engineering projects, and personal stories.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Blog Post 1: My Achievements -->
+      <div class="glass-panel rounded-3xl p-6 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between" data-tilt>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-xs font-mono text-amber-400">
+            <span>FEATURED POST</span>
+            <span class="text-slate-400">August 05, 2026</span>
+          </div>
+          <h3 class="text-xl font-orbitron font-bold text-white hover:text-amber-300 transition-colors">
+            <a href="https://theerthanupdates.blogspot.com/2026/08/my-achivements.html" target="_blank" rel="noopener noreferrer">
+              My Achievements &amp; Hackathon Journey
+            </a>
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Detailed recap of our SDM Jhenkar Season 6 team presentation, Confluence 2.0 Hackathon certifications, Intellipaat AI Bootcamp, and be10x AI workshop honors.
+          </p>
+        </div>
+        <div class="pt-6 mt-4 border-t border-slate-800">
+          <a href="https://theerthanupdates.blogspot.com/2026/08/my-achivements.html" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-amber-400 hover:underline flex items-center justify-between">
+            <span>Read on Blogspot</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Blog Post 2: My Projects -->
+      <div class="glass-panel rounded-3xl p-6 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between" data-tilt>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-xs font-mono text-cyan-400">
+            <span>DEVELOPMENT</span>
+            <span class="text-slate-400">August 05, 2026</span>
+          </div>
+          <h3 class="text-xl font-orbitron font-bold text-white hover:text-cyan-300 transition-colors">
+            <a href="https://theerthanupdates.blogspot.com/2026/08/my-projects.html" target="_blank" rel="noopener noreferrer">
+              My Projects &amp; Digital Solutions
+            </a>
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Showcase of digital tools, GitHub open-source repositories, and user-centric web applications developed for solving real-world challenges.
+          </p>
+        </div>
+        <div class="pt-6 mt-4 border-t border-slate-800">
+          <a href="https://theerthanupdates.blogspot.com/2026/08/my-projects.html" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-cyan-400 hover:underline flex items-center justify-between">
+            <span>Read on Blogspot</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Blog Post 3: Who I Am -->
+      <div class="glass-panel rounded-3xl p-6 border border-slate-800 hover:border-purple-500/50 transition-all flex flex-col justify-between" data-tilt>
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-xs font-mono text-purple-400">
+            <span>ABOUT ME</span>
+            <span class="text-slate-400">August 05, 2026</span>
+          </div>
+          <h3 class="text-xl font-orbitron font-bold text-white hover:text-purple-300 transition-colors">
+            <a href="https://theerthanupdates.blogspot.com/2026/08/who-i-am.html" target="_blank" rel="noopener noreferrer">
+              Who I Am: Passion for Technology
+            </a>
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            My personal mission statement, background in Hassan, and vision for leveraging artificial intelligence and creative software to build the future.
+          </p>
+        </div>
+        <div class="pt-6 mt-4 border-t border-slate-800">
+          <a href="https://theerthanupdates.blogspot.com/2026/08/who-i-am.html" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-purple-400 hover:underline flex items-center justify-between">
+            <span>Read on Blogspot</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Blog Action Banner -->
+    <div class="mt-12 glass-panel p-8 rounded-3xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div class="space-y-1">
+        <h4 class="text-lg font-orbitron font-bold text-white">Subscribe &amp; Follow THEERTHAN UPDATES</h4>
+        <p class="text-xs text-slate-400 font-mono">Created for educational purposes and tech sharing.</p>
+      </div>
+      <a href="https://theerthanupdates.blogspot.com/?m=1" target="_blank" rel="noopener noreferrer" class="cyber-button px-6 py-3 rounded-xl font-orbitron text-xs font-bold flex items-center gap-2">
+        <span>OPEN BLOGSPOT</span>
+        <i data-lucide="external-link" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- SECTION 06: CONTACT & CONNECT TERMINAL -->
+  <section id="contact" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto section-fade-in relative">
+    <div class="flex flex-col items-center text-center space-y-3 mb-16">
+      <span class="text-xs font-mono text-cyan-400 tracking-widest uppercase bg-cyan-500/10 px-3.5 py-1 rounded-full border border-cyan-500/20">
+        // 06. Transmission Terminal
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-orbitron font-extrabold text-white">
+        CONNECT &amp; <span class="text-gradient-cyan">TRANSMIT</span>
+      </h2>
+      <p class="text-slate-400 max-w-2xl text-sm sm:text-base">
+        Have a project in mind, want to collaborate on a hackathon, or discuss AI &amp; Web development? Send a message directly or connect via social networks.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left Column: Direct Social Matrix & Hassan Radar -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Social Connection Cards -->
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-800 space-y-4">
+          <h3 class="font-orbitron font-bold text-lg text-white">Direct Channels</h3>
+          
+          <div class="space-y-3">
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/theerthan-bg-82b716408?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all group">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 group-hover:scale-110 transition-transform">
+                  <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-orbitron font-semibold text-sm text-white">LinkedIn</h4>
+                  <p class="text-xs font-mono text-slate-400">theerthan-bg-82b716408</p>
+                </div>
+              </div>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-cyan-400 transition-colors"></i>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/theerthan_bg?igsi=OGQ2cWFxZDQ2cmx1" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-pink-500/50 hover:bg-pink-500/10 transition-all group">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-pink-500/10 text-pink-400 group-hover:scale-110 transition-transform">
+                  <i data-lucide="instagram" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-orbitron font-semibold text-sm text-white">Instagram</h4>
+                  <p class="text-xs font-mono text-slate-400">@theerthan_bg</p>
+                </div>
+              </div>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-pink-400 transition-colors"></i>
+            </a>
+
+            <!-- Blogspot -->
+            <a href="https://theerthanupdates.blogspot.com/?m=1" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-500/50 hover:bg-amber-500/10 transition-all group">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 group-hover:scale-110 transition-transform">
+                  <i data-lucide="newspaper" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-orbitron font-semibold text-sm text-white">Blogspot</h4>
+                  <p class="text-xs font-mono text-slate-400">theerthanupdates.blogspot.com</p>
+                </div>
+              </div>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-amber-400 transition-colors"></i>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/theerthan-bg" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-purple-500/50 hover:bg-purple-500/10 transition-all group">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 group-hover:scale-110 transition-transform">
+                  <i data-lucide="github" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-orbitron font-semibold text-sm text-white">GitHub</h4>
+                  <p class="text-xs font-mono text-slate-400">github.com/theerthan-bg</p>
+                </div>
+              </div>
+              <i data-lucide="arrow-up-right" class="w-4 h-4 text-slate-500 group-hover:text-purple-400 transition-colors"></i>
+            </a>
+          </div>
+
+          <!-- Direct Copy Email Banner -->
+          <div class="pt-4 border-t border-slate-800">
+            <button class="copy-email-btn w-full py-3 px-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 transition-all font-mono text-xs flex items-center justify-center gap-2 cursor-pointer">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+              <span>Click to Copy Email: theerthangowda724@gmail.com</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Hassan Location Radar Card -->
+        <div class="glass-panel rounded-3xl p-6 border border-slate-800 flex items-center gap-4 relative overflow-hidden">
+          <div class="relative w-14 h-14 rounded-2xl bg-slate-950 border border-slate-800 flex items-center justify-center shrink-0">
+            <i data-lucide="navigation" class="w-6 h-6 text-cyan-400 radar-sweep"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <h4 class="font-orbitron font-bold text-white text-sm">Hassan, Karnataka</h4>
+            </div>
+            <p class="text-xs font-mono text-slate-400 mt-0.5">India • UTC +05:30</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Interactive Cyber Transmission Form -->
+      <div class="lg:col-span-7">
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-800 relative">
+          
+          <div class="flex items-center justify-between pb-6 border-b border-slate-800 mb-6">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-cyan-400"></div>
+              <div class="w-3 h-3 rounded-full bg-purple-400"></div>
+              <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+              <span class="text-xs font-mono text-slate-400 ml-2">TERMINAL_DISPATCH // v2.0</span>
+            </div>
+            <span class="text-[11px] font-mono text-emerald-400">ENCRYPTED // ACTIVE</span>
+          </div>
+
+          <form id="contact-form" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="space-y-2">
+                <label for="contact-name" class="block font-mono text-xs text-slate-300 uppercase tracking-wider">
+                  Your Full Name
+                </label>
+                <input 
+                  type="text" 
+                  id="contact-name" 
+                  required 
+                  placeholder="e.g. Alex Walker" 
+                  class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-600"
+                />
+              </div>
+
+              <div class="space-y-2">
+                <label for="contact-email" class="block font-mono text-xs text-slate-300 uppercase tracking-wider">
+                  Your Email Address
+                </label>
+                <input 
+                  type="email" 
+                  id="contact-email" 
+                  required 
+                  placeholder="e.g. alex@example.com" 
+                  class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-600"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="contact-subject" class="block font-mono text-xs text-slate-300 uppercase tracking-wider">
+                Transmission Subject / Topic
+              </label>
+              <input 
+                type="text" 
+                id="contact-subject" 
+                placeholder="e.g. Hackathon Collaboration / Web Project / AI Consultation" 
+                class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-600"
+              />
+            </div>
+
+            <div class="space-y-2">
+              <label for="contact-message" class="block font-mono text-xs text-slate-300 uppercase tracking-wider">
+                Message Content
+              </label>
+              <textarea 
+                id="contact-message" 
+                rows="5" 
+                required 
+                placeholder="Write your message here..." 
+                class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-white font-mono text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-600 resize-none"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="cyber-button w-full py-4 rounded-xl font-orbitron font-bold text-sm tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-cyan-500/20">
+              <i data-lucide="send" class="w-4 h-4 text-cyan-300"></i>
+              <span>TRANSMIT MESSAGE NOW</span>
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-12 px-4 sm:px-8 border-t border-slate-800/80 bg-slate-950/80 relative z-10">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <!-- Brand & Copyright -->
+      <div class="space-y-1 text-center md:text-left">
+        <div class="flex items-center justify-center md:justify-start gap-2">
+          <span class="font-orbitron font-black text-cyan-400 text-lg">THEERTHAN B G</span>
+          <span class="text-xs font-mono text-slate-500">// 2026</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">
+          Designed &amp; Engineered with 3D WebGL, Three.js, GSAP &amp; Tailwind CSS.
+        </p>
+      </div>
+
+      <!-- Quick Back to Top -->
+      <a href="#hero" class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-cyan-400 hover:border-cyan-400 hover:scale-110 transition-all flex items-center gap-2 font-mono text-xs">
+        <i data-lucide="arrow-up" class="w-4 h-4"></i>
+        <span>Back to Top</span>
+      </a>
+
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX / CERTIFICATE MODAL -->
+  <div id="certModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 modal-backdrop bg-black/85 backdrop-blur-xl">
+    <div class="relative max-w-3xl w-full glass-panel rounded-3xl border border-cyan-500/40 p-6 sm:p-8 shadow-2xl overflow-hidden animate-float-slow">
+      
+      <!-- Close Button -->
+      <button id="closeModalBtn" class="absolute top-4 right-4 p-2 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-300 hover:text-cyan-400 hover:border-cyan-400 transition-all cursor-pointer">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Content -->
+      <div class="space-y-5">
+        <div class="relative max-h-[55vh] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 flex items-center justify-center">
+          <img id="modalCertImg" src="" alt="Certificate" class="max-h-[52vh] w-auto object-contain rounded-xl" />
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span id="modalCertIssuer" class="text-xs font-mono text-cyan-400 uppercase font-semibold"></span>
+            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Verified Credential
+            </span>
+          </div>
+          <h3 id="modalCertTitle" class="text-2xl font-orbitron font-bold text-white"></h3>
+          <p id="modalCertDesc" class="text-slate-300 text-sm leading-relaxed"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="cyber-toast" class="hidden fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-xl border border-cyan-500/40 bg-slate-900/95 backdrop-blur-md shadow-2xl shadow-cyan-500/20 text-white font-mono text-sm">
+    <i id="toast-icon" data-lucide="check-circle-2" class="w-5 h-5 text-cyan-400"></i>
+    <span id="toast-message">Action confirmed</span>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="three-scene.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
